@@ -32,7 +32,7 @@
         >
             <td>{{message.content}}</td>
             <td>
-                <div *ngIf="container === 'Outbox'">
+                <div *ngIf="container === 'Inbox'">
                     <img src="{{message.recipientPhotoUrl || './assets/user.png'}}"
                         alt="{{message.recipientUsername}}"
                         class="img-circle rounded-circle me-2" 
@@ -48,7 +48,7 @@
                 </div>
             </td>
             <td>{{message.messageSent | timeago}}</td>
-            <td><button class="btn btn-danger" (click)="$event.stopPropagation()" (click)="deleteMessage(message.id)">
+            <td><button class="btn btn-danger text-danger" (click)="$event.stopPropagation()" (click)="deleteMessage(message.id)">
                 Delete
             </button></td>
         </tr>

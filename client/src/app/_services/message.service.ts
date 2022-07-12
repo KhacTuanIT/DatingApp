@@ -23,7 +23,7 @@ export class MessageService {
 
   createHubConnection(user: User, otherUsername: string) {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
+      .withUrl(this.hubUrl + 'messages?user=' + otherUsername, {
         accessTokenFactory: () => user.token
       })
       .withAutomaticReconnect()
@@ -72,7 +72,7 @@ export class MessageService {
   }
 
   async sendMessage(username: string, content: string) {
-    return this.hubConnection.invoke('SendMessage', { recipientUsername: username, content })
+    return this.hubConnection.invoke('SendMessageAsync', { recipientUsername: username, content })
       .catch(error => console.log(error));
   }
 

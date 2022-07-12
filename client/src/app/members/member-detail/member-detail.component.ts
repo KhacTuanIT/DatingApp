@@ -28,10 +28,11 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   constructor(public presence: PresenceService, private route: ActivatedRoute,
     private messageService: MessageService, private accountService: AccountService, 
     private router: Router) { 
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+        
         this.user = user;
       });
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
   ngOnDestroy(): void {
@@ -59,6 +60,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     ];
 
     this.galleryImages = this.getImages();
+    
   }
   
   getImages(): NgxGalleryImage[] {
